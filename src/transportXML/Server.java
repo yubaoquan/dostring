@@ -11,8 +11,14 @@ import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 
 public class Server {
 	private static Selector selector = null;
@@ -74,9 +80,20 @@ public class Server {
 				String tempString = new String(array);
 				xmlStringBuffer.append(tempString);
 				buffer.clear();
-				
 			}
-			System.out.println(xmlStringBuffer);
+			String xmlString = xmlStringBuffer.toString().trim();
+			System.out.println("as String: " + xmlString);
+			
+			String resultXMLString = parseXML(xmlString);
+			buffer.clear();
+			buffer.put(resultXMLString.getBytes());
+			buffer.flip();
+			socketChannel.write(buffer);
+			socketChannel.socket().close();
+			
+		} catch (DocumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} finally {
 			try {
 				channel.close();
@@ -89,6 +106,40 @@ public class Server {
 				ex.printStackTrace();
 			}
 		}
+	}
+
+	private static String parseXML(String xmlString) throws DocumentException {
+		Document document = DocumentHelper.parseText(xmlString);
+		Element root = document.getRootElement();
+		StringBuffer result = new StringBuffer();
+		
+		for (Iterator iter = root.elementIterator(); iter.hasNext();) {
+			Element element = (Element) iter.next();
+			if (element.isTextOnly()) {
+				String elementName = element.getName();
+				String elementData = (String) element.getText();
+				System.out.format("name: %s data: %s\n", elementName,elementData);
+				result.append("name: " + elementName + " property: " + elementData + "\n");
+			} else {
+				String elementName = element.getName();
+				System.out.format("name: %s\n", elementName);
+				result.append("name: " + elementName + "\n");
+				for (Iterator i = element.elementIterator(); i.hasNext();) {
+					Element innerElement = (Element) i.next();
+					String innerElementName = innerElement.getName();
+					if (innerElement.isTextOnly()) {
+						String innerElementData = (String) innerElement.getText();
+						System.out.format("name: %s data: %s\n", innerElementName,innerElementData);
+						result.append("name: " + innerElementName + " property: " + innerElementData + "\n");
+					} else {
+						System.out.format("name: %s\n", innerElementName);
+						result.append("name: " + innerElementName + "\n");
+					}
+					
+				}
+			}
+		}
+		return result.toString();
 	}
 
 }

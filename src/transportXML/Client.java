@@ -46,6 +46,26 @@ public class Client {
 				System.out.println("write once");
 			}
 			socketChannel.socket().shutdownOutput();
+			fileChannel.close();
+			fileInputStream.close();
+			
+			byteBuffer.clear();
+			int receive_size = 0;
+			StringBuffer xmlStringBuffer = new StringBuffer();
+			while ((receive_size = socketChannel.read(byteBuffer)) != -1) {
+				System.out.println("there2");
+				byteBuffer.flip();
+				System.out.println("receive once");
+				byte[] array = new byte[1024];
+				byteBuffer.get(array,0,byteBuffer.remaining());
+				String tempString = new String(array);
+				xmlStringBuffer.append(tempString);
+				byteBuffer.clear();
+			}
+			
+			String xmlData = new String(xmlStringBuffer);
+			System.out.println(xmlData);
+			socketChannel.socket().shutdownOutput();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
