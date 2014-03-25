@@ -1,4 +1,4 @@
-package transportXML;
+package testSocketChannel;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +13,7 @@ import java.nio.channels.SocketChannel;
 public class Client {
 	private static SocketChannel socketChannel = null;
 	private static SocketAddress socketAddress = null;
+	private static ByteBuffer byteBuffer = null;
 	/**
 	 * @param args
 	 */
@@ -21,13 +22,22 @@ public class Client {
 		try {
 			socketChannel = SocketChannel.open();
 			socketChannel.connect(socketAddress);
-			String filePath = "E:\\code\\ecli\\WS\\pom.xml";
-			sendFile(new File(filePath), socketChannel);
-			
-		} catch (IOException e) {
+			talk();
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private static void talk() throws Exception {
+		byteBuffer = ByteBuffer.allocateDirect(1024);
+		byteBuffer.flip();
+		byteBuffer.put("你好！".getBytes());
+		socketChannel.write(byteBuffer);
+		byteBuffer.clear();
+		
+		socketChannel.socket().shutdownOutput();
+		socketChannel.close();
 	}
 	
 	public static void sendFile(File file, SocketChannel socketChannel) {
@@ -85,5 +95,4 @@ public class Client {
 		}
 		
 	}
-
 }
