@@ -12,17 +12,17 @@ public class MyTest {
 	 * ���췽��
 	 */
 	public MyTest() {
-		String classInfo = JOptionPane.showInputDialog(null, "������ȫ·��");// Ҫ���û��������ȫ·��
+		String className = JOptionPane.showInputDialog(null, "please input the class full name");// Ҫ���û��������ȫ·��
 		try {
-			Class cla = Class.forName(classInfo);// ������ȫ·����������أ����ظ����Class����
-			Method[] method = cla.getDeclaredMethods();// ���õõ���Class��������󣬷��ط������󼯺�
-			for (Method me : method) {// ������෽���ļ���
-				System.out.println(me.toString());// ��ӡ������Ϣ
+			Class<?> cla = Class.forName(className);
+			Method[] method = cla.getDeclaredMethods();
+			for (Method me : method) {
+				System.out.println(me.toString());
 			}
 			System.out.println("********");
-			Field[] field = cla.getDeclaredFields();// ���õõ���Class��������󣬷������Զ��󼯺�
-			for (Field me : field) { // ����������Եļ���
-				System.out.println(me.toString());// ��ӡ������Ϣ
+			Field[] field = cla.getDeclaredFields();
+			for (Field me : field) { 
+				System.out.println(me.toString());
 			}
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();

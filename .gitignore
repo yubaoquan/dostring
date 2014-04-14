@@ -218,3 +218,9 @@ pip-log.txt
 .jpg
 .png
 .gif
+/nbproject/private/
+nbproject/
+.idea
+manifest.mf
+.iml
+build.xml

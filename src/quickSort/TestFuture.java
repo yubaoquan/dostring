@@ -1,4 +1,4 @@
-package package2;
+package quickSort;
 
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;

@@ -13,7 +13,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.Spliterator;
 import java.util.TreeMap;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class TestContainer {
 
@@ -326,6 +330,36 @@ public class TestContainer {
 
 		@Override
 		public Object[] toArray(Object[] arg0) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void forEach(Consumer action) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public boolean removeIf(Predicate filter) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public Spliterator spliterator() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Stream stream() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public Stream parallelStream() {
 			// TODO Auto-generated method stub
 			return null;
 		}

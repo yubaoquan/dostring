@@ -1,4 +1,4 @@
-package mypackage;
+package mypackage.testJavaMail;
 
 
 import java.io.File;

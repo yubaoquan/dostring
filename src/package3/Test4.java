@@ -50,6 +50,10 @@ public class Test4 {
 		}
 	}
 
+        private static String function() {
+            String s = "hello world";
+            return s;
+        }
 	private static void test1() {
 		String target = "yUdaoquaNyUbaoquaNyubaoquaTL";
 		String regular = "(\\w*(.))dao(\\w*).";

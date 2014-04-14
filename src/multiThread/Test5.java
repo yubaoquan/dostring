@@ -1,4 +1,4 @@
-package mypackage;
+package multiThread;
 
 public class Test5 implements Runnable{
 
