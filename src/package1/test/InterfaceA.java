@@ -1,4 +1,4 @@
-package test;
+package package1.test;
 
 public interface InterfaceA {
 	default public void haha() {

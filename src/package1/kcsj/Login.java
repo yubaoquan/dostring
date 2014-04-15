@@ -1,4 +1,4 @@
-package kcsj;
+package package1.kcsj;
 
 import java.awt.*;
 import java.awt.event.*;
