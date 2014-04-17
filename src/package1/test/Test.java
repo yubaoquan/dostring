@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -15,7 +16,7 @@ public class Test {
 	private static Integer[] tempArray;
 
 	public static void main(String[] args) throws Exception {
-		testMergeSort();
+		testLongestSubSequence();
 	}
 
 	@SuppressWarnings("unused")
@@ -167,6 +168,9 @@ public class Test {
 		System.out.println(rightString);
 	}
 
+	/**
+	 * 画菱形
+	 */
 	@SuppressWarnings("unused")
 	private static void drawDiamond() {
 		int height = 9;
@@ -197,6 +201,9 @@ public class Test {
 		}
 	}
 
+	/**
+	 * fillOrCleanSeats()方法的测试方法
+	 */
 	@SuppressWarnings({ "unused", "resource" })
 	public static void test3667() {
 		Scanner sc = new Scanner(System.in);
@@ -215,6 +222,12 @@ public class Test {
 
 	}
 
+	/**
+	 * 填充或清空子序列
+	 * @param seatArray 输入序列
+	 * @param amount 需要填充或清空的数量
+	 * @param operator 1：清空，2：填充
+	 */
 	private static void fillOrCleanSeats(int[] seatArray, int amount, int operator) {
 		int count = 0;
 		for (int i = 0; i < seatArray.length; i++) {
@@ -235,6 +248,9 @@ public class Test {
 		}
 	}
 
+	/**
+	 * 归并算法的测试方法
+	 */
 	private static void testMergeSort() {
 		int arraySize = 10;
 		// int[] array = new int[arraySize];
@@ -252,6 +268,12 @@ public class Test {
 		out.println(Arrays.toString(tempArray));
 	}
 
+	/**
+	 * 我写的归并算法
+	 * @param array 待排序的数组
+	 * @param begin 待排序的开始位置
+	 * @param end 待排序的结束位置
+	 */
 	@SuppressWarnings("unused")
 	private static void mergeSort(Integer[] array, int begin, int end) {
 		int length = end - begin;
@@ -303,6 +325,14 @@ public class Test {
 		msort(arr, tempArr, 0, arr.length);
 	}
 
+	/**
+	 * 归并排序
+	 * 网站上标准代码
+	 * @param arr 待排序数组
+	 * @param tempArr 中间数组
+	 * @param first 待排序的开始位置
+	 * @param last 待排序的结束位置
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private static void msort(Object[] arr, Object[] tempArr, int first, int last) {
 		if (first + 1 < last) {
@@ -339,5 +369,53 @@ public class Test {
 			for (int i = first; i < last; i++)
 				arr[i] = tempArr[i];
 		}
+	}
+	
+	
+	private static void testLongestSubSequence() {
+		int arraySize = 10;
+		Random random = new Random();
+		//Integer[] array;// = new Integer[arraySize];
+	/*	for (int i = 0; i < array.length; i++) {
+			array[i] = (int) (Math.random() * 10);
+			if (random.nextBoolean()) {
+				array[i] *= -1;
+			} 
+		}*/
+		Integer[] array = {-2, 11, -4, 13, -5, -2};//{1, 2, -1, 1, 3, 2, -2, 3, -1, 5, -7, 3, 2, -2, -1};
+		out.println(Arrays.toString(array));
+		int[] result = longestSubSequence(array);
+		out.println(Arrays.toString(result));
+	}
+	
+	/**
+	 * 寻找数组中最大和的子序列
+	 * @param array
+	 * @return
+	 */
+	private static int[] longestSubSequence(Integer[] array) {
+		int maxSum = 0;
+		int maxSumHere = 0;
+		int start = 0;
+		int end = 0;
+		int startHere = 0;
+		int endHere = 0;
+		
+		for (int i = 0; i < array.length; i ++) {
+			if (maxSumHere + array[i] >= 0) {
+				maxSumHere = maxSumHere + array[i];
+				endHere = i;
+			} else {
+				maxSumHere = 0;
+				startHere = i + 1;
+				endHere = startHere;
+			}
+			if (maxSumHere > maxSum || ((endHere - startHere > end - start ) && maxSumHere == maxSum)) {
+				start = startHere;
+				end = endHere;
+				maxSum = maxSumHere;
+			}
+		}
+		return new int[]{start, end, maxSum};
 	}
 }
