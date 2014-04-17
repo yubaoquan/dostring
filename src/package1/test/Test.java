@@ -1,11 +1,13 @@
 package package1.test;
 
+import static java.lang.System.out;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -15,7 +17,7 @@ import java.util.stream.*;
 public class Test {
 
 	public static void main(String[] args) throws Exception {
-		testConcurrent();
+		drawDiamond();
 	}
 
 	private static void testConcurrent() {
@@ -64,10 +66,10 @@ public class Test {
 	private static void testParallelStream() {
 		long t0 = System.nanoTime();
 		// 初始化一个范围100万整数流,求能被2整除的数字，toArray（）是终点方法
-		int a[] = IntStream.range(0, 1_000_000).filter(p -> p % 2 == 0).toArray();
+		int a[] = IntStream.range(0, 1000000).filter(p -> p % 2 == 0).toArray();
 		long t1 = System.nanoTime();
 		// 和上面功能一样，这里是用并行流来计算
-		int b[] = IntStream.range(0, 1_000_000).parallel().filter(p -> p % 2 == 0).toArray();
+		int b[] = IntStream.range(0, 1000000).parallel().filter(p -> p % 2 == 0).toArray();
 		long t2 = System.nanoTime();
 		// 我本机的结果是serial: 0.06s, parallel 0.02s，证明并行流确实比顺序流快
 		System.out.printf("serial: %.2fs, parallel %.2fs%n", (t1 - t0) * 1e-9, (t2 - t1) * 1e-9);
@@ -155,4 +157,32 @@ public class Test {
 		System.out.println(rightString);
 	}
 
+	private static void drawDiamond() {
+		int height= 9;
+		int width = 9;
+		int middle = width / 2;
+		int[] array = new int[width];
+		Arrays.fill(array, 0);
+		
+		for (int i = 0; i < height; i ++) {
+			Arrays.fill(array, 0);
+			if (i < 5) {
+				for (int x = middle - i; x <= middle + i; x ++) {
+					array[x] = 1;
+				}
+			} else {
+				for (int x = i - middle; x <  width + middle - i; x ++) {
+					array[x] = 1;
+				}
+			}
+			for (int j = 0; j < width; j ++) {
+				if (array[j] == 0) {
+					out.print("+");
+				}else {
+					out.print("=");
+				}
+			}
+			out.println();
+		}
+	}
 }
