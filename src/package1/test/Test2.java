@@ -93,6 +93,10 @@ public class Test2 {
 	*/
 	}
 	
+	/**
+	 * 测试将对象转型
+	 * @param a
+	 */
 	private static void cast(int a) {
 		Object obj;
 		obj = (int) 11;

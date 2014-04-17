@@ -5,6 +5,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.lang.reflect.*;
 
+/**
+ * 窗口中随时间变长的进度条
+ * @author yubaoquan
+ *
+ */
 public class ProgressSample {
     
     static class BarThread extends Thread {
