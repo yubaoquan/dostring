@@ -15,8 +15,15 @@ import java.util.stream.IntStream;
 public class Test {
 	private static Integer[] tempArray;
 
+	private static void testAndOperation() {
+		int a = 5;
+		int b = 3;
+		out.println(a % b);
+		out.println(a & b);
+	}
+	
 	public static void main(String[] args) throws Exception {
-		testLongestSubSequence();
+		testAndOperation();
 	}
 
 	@SuppressWarnings("unused")

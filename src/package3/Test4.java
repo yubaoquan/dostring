@@ -10,10 +10,21 @@ import java.util.regex.Pattern;
 public class Test4 {
 
 	public static void main(String[] args) throws Exception {
-		test3();
-
+		//test3();
+		for (int i = 0; i < 10; i ++) {
+			int result = triangleNumber(i + 1);
+			System.out.println(result);
+		}
 	}
 
+	private static int triangleNumber(int n) {
+		int result = 0;
+		for (int i = 1; i <= n; i ++) {
+			result += i;
+		}
+		return result;
+	}
+	
 	private static void test4() {
 		String str = "yu.bao.quan";
 		String[] array = str.split("\\.");

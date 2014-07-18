@@ -1,5 +1,6 @@
 package mypackage;
 
+import static java.lang.System.out;
 import java.util.Arrays;
 
 public abstract class Test2 {
@@ -64,4 +65,6 @@ public abstract class Test2 {
 			System.out.print(i + " ");
 		}
 	}
+	
+	
 }

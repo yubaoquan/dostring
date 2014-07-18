@@ -25,10 +25,8 @@ public class MoveTower {
 		for (int i = TOWER_HEIGHT; i > 0; i--) {
 			towers[0][TOWER_HEIGHT - i] = i;
 		}
-
 		Arrays.fill(towers[1], 0);
 		Arrays.fill(towers[2], 0);
-
 	}
 
 	/**
