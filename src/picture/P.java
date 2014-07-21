@@ -92,7 +92,7 @@ public class P {
 	}
 
 	public static void main(String[] args) {
-		String fileName = "C:\\Users\\DELL\\Desktop\\未央青岚\\82897-a120919f0df869a6478ec1b2d28ea0a96595.jpg";
+		String fileName = "C:\\Users\\DELL\\Desktop\\xst.jpg";
 		new P().doSome(fileName,3,2);
 		System.out.println("finished!");
 	}
