@@ -144,6 +144,15 @@ public class URLTest {
 	}
 
 	public static void main(String[] args) throws IOException {
+		mainDownloadPage();
+	}
+
+	private static void mainDownloadPage() throws MalformedURLException {
+		String urlString = "http://www.ii69.net/5367.html";
+		storeResource(new URL(urlString), new File("E:/xx/page.html"));
+		
+	}
+	private static void mainDownloadPictures() throws MalformedURLException {
 		String initialURLString = "http://www.xxxx.com/news/?2656_";
 		String pictureURLStringLeftPart = "http://www.xxxx.com";
 		StringBuffer pageContent = null;

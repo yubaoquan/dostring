@@ -85,6 +85,7 @@ public class P {
 
 	public static void main(String[] args) {
 		String fileName = "C:/Users/I3/Desktop/x.jpg";
+		//String fileName = "C:\\Users\\DELL\\Desktop\\xst.jpg";
 		new P().doSome(fileName,3,2);
 		System.out.println("finished!");
 	}
