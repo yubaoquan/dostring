@@ -1,18 +1,13 @@
 package picture;
 
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.BufferedOutputStream;
 import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.ImageOutputStream;
-import javax.swing.ImageIcon;
 
 public class P {
 	
@@ -23,6 +18,7 @@ public class P {
 			return;
 		}
 		try {
+			//init text file, init streams
 			File originFile = new File(fileName);
 			String newFilePath = originFile.getParent() + File.separator + originFile.getName();
 			newFilePath = newFilePath.substring(0,newFilePath.length() - 4) + ".txt";
@@ -31,20 +27,16 @@ public class P {
 			FileOutputStream fos = new FileOutputStream(characterPicture);
 			DataOutputStream dos = new DataOutputStream(fos);
 			
-			// BufferedImage�൱��һ������,�ڴ������ڴ���
-			//BufferedImage img = ImageIO.read(new File(fileName));
 			BufferedImage img = ImageIO.read(originFile);
 			
 			int huabuwid = img.getWidth();
 			int huabuhid = img.getHeight();
 			
-			int colStep = suoLueH;
-			int rowStep = suoLueW;
+			int colStep = suoLueH;//colStep是列步长，suoLueH是列比例
+			int rowStep = suoLueW;//rowStep是行步长，suoLueW是行比例
 			
 			int newPictureLength = huabuhid / colStep + 1;//
 			int newPictureWidth = huabuwid / rowStep + 1 ;
-			//int step = suoLueBeiShu;
-		//	int colStep = step + 1;//-----------------------
 			
 			String[][] characterImage = new String[newPictureLength][newPictureWidth];
 			
@@ -92,7 +84,7 @@ public class P {
 	}
 
 	public static void main(String[] args) {
-		String fileName = "C:\\Users\\DELL\\Desktop\\未央青岚\\82897-a120919f0df869a6478ec1b2d28ea0a96595.jpg";
+		String fileName = "C:/Users/I3/Desktop/x.jpg";
 		new P().doSome(fileName,3,2);
 		System.out.println("finished!");
 	}
