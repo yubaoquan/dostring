@@ -65,9 +65,16 @@ public class ReceiveMail {
         in.close();
     }
     //base64解码
+    /**
+     * 这个方法缺依赖，小红叉看着太别扭，因此注释掉了
+     * @param s
+     * @return
+     * @throws Exception
+     */
     private static String base64Decoder(String s) throws Exception {
-        sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
-        byte[] b = decoder.decodeBuffer(s);
+       // sun.misc.BASE64Decoder decoder = new sun.misc.BASE64Decoder();
+        //byte[] b = decoder.decodeBuffer(s);
+    	byte[] b = new byte[1];
         return (new String(b));
     }
 

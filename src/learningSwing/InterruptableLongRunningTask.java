@@ -10,8 +10,6 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
-import sun.text.normalizer.IntTrie;
-
  class Task implements Runnable{
 	private static int counter = 0;
 	private final int id = counter ++;

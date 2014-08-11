@@ -1,14 +1,12 @@
-package algorithm.sort;
+package algorithm.tools;
 
 import java.util.Random;
 
-public class Sort {
+public class Tools {
 
-	public static void quickSort(int[] array) {
-		
-	}
 	/**
 	 * 交换数组中两个元素
+	 * 
 	 * @param array
 	 * @param i
 	 * @param j
@@ -18,9 +16,10 @@ public class Sort {
 		array[i] = array[j];
 		array[j] = temp;
 	}
-	
+
 	/**
 	 * 打印数组内容
+	 * 
 	 * @param a
 	 */
 	public static void printArray(int[] a) {
@@ -29,8 +28,10 @@ public class Sort {
 		}
 		System.out.println();
 	}
+
 	/**
 	 * 生成length长的整数数组，数组中每个数随机产生
+	 * 
 	 * @param length
 	 * @return
 	 */
@@ -42,10 +43,4 @@ public class Sort {
 		}
 		return array;
 	}
-	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
 }
