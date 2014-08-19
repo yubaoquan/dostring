@@ -48,21 +48,6 @@ public class Test2 {
 		array[indexB] = temp;
 	}
 	
-	private static int[] produceRadomArray(int arrayLength) {
-		int[] resultArray = new int[arrayLength];
-		for (int i = 0; i < arrayLength; i ++) {
-			resultArray[i] = (int)(Math.random() * 100);
-		}
-		return resultArray;
-	} 
-	
-	private static void printArray(int[] inputArray) {
-		for (int temp : inputArray) {
-			System.out.print(temp + " ");
-		}
-		System.out.println();
-	}
-	
 	private static void testSortMethods() {
 		Class thisClass = Test2.class;
 		Method[] methods = thisClass.getDeclaredMethods();

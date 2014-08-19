@@ -30,8 +30,8 @@ public class Add {
 		}
 	
 	public static void main(String[] args) {
-		//System.out.println(Add.solve(32));
-		Add a = new Add();
+		System.out.println(Add.solve(32));
+//		Add a = new Add();
 		
 	}
 }

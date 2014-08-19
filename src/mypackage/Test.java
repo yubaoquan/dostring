@@ -1,29 +1,10 @@
 package mypackage;
 
 import java.util.ArrayList;
-import java.util.List;
+import static java.lang.System.*;
 
-/*��������*/
 public class Test {
-	/*
-	 * public static void main(String[] args) { int width = 400;
-	 * 
-	 * int height = 300;
-	 * 
-	 * // ����BufferedImage���� BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-	 * 
-	 * // ����Graphics2D Graphics2D g2d = image.createGraphics();
-	 * 
-	 * // ---------- �������������������������� ----------------- image = g2d.getDeviceConfiguration().createCompatibleImage(width, height, Transparency.TRANSLUCENT); g2d.dispose(); g2d = image.createGraphics();
-	 * 
-	 * // ---------- ���������������� -----------------
-	 * 
-	 * // ���� g2d.setColor(new Color(255,0,0)); g2d.setStroke(new BasicStroke(1)); g2d.draw(new Rectangle(10,10));
-	 * 
-	 * //�������� g2d.dispose();
-	 * 
-	 * // �������� try { ImageIO.write(image, "png", new File("E:/test.png")); } catch (IOException e) { // TODO Auto-generated catch block e.printStackTrace(); } }
-	 */
+	
 	private final int a = 9;
 
 	@SuppressWarnings("finally")
@@ -75,19 +56,16 @@ public class Test {
 		}
 	}
 	public static void main(String[] args) {
+//		testPailiezuhe();
+		out.println(func());
+	}
 
-		List<Object> objectList;
-		List<String> stringList;
-		     
-		//objectList = stringList;  //compilation error incompatible types
-		
+	private static void testPailiezuhe() {
 		String s = "我爱你";// 原字符串
 		ArrayList<String> result = new ArrayList<String>();
 		result = getResult(s,result);
 		for (int i = 0; i < result.size(); i ++) {
 			System.out.println(result.get(i));
 		}
-		//insertCharToString('o',"apple",null);
-
 	}
 }

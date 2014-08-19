@@ -2,9 +2,6 @@ package mypackage;
 
 public class RetrieveLink {
 
-	
-	
-	
 	MyList list = new MyList(null);
 	public static void display(MyList list) {
 		Node temp = list.head;
@@ -48,7 +45,6 @@ public class RetrieveLink {
 		display(rl.list);
 	}
 //}
-
 
 static class Node {
 	public int value;
