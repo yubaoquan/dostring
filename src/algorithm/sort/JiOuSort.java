@@ -1,6 +1,7 @@
 package algorithm.sort;
 
 import static java.lang.System.*;
+import algorithm.tools.Tools;
 
 public class JiOuSort {
 
@@ -10,13 +11,13 @@ public class JiOuSort {
 			swaped = false;
 			for (int i = 0; i + 1< array.length; i += 2) {
 				if (array[i] > array[i + 1]) {
-					Sort.swap(array, i, i + 1);
+					Tools.swap(array, i, i + 1);
 					swaped = true;
 				}
 			}
 			for (int i = 1; i + 1 < array.length; i += 2) {
 				if (array[i] > array[i + 1]) {
-					Sort.swap(array, i, i + 1);
+					Tools.swap(array, i, i + 1);
 					swaped = true;
 				}
 			}
@@ -27,10 +28,10 @@ public class JiOuSort {
 	}
 	
 	private static void testJOSort(int arraySize) {
-		int[] array = Sort.produceArray(arraySize);
-		Sort.printArray(array);
+		int[] array = Tools.produceArray(arraySize);
+		Tools.printArray(array);
 		sort(array);
-		Sort.printArray(array);
+		Tools.printArray(array);
 	}
 	
 	private static void testJOSort() {

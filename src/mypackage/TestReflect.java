@@ -1,10 +1,15 @@
 package mypackage;
 
+import static java.lang.System.out;
+
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import javax.swing.JOptionPane;
 
 
 public class TestReflect {
@@ -41,4 +46,22 @@ public class TestReflect {
 		}
 	}
 
+	public static void showMethodNField() {
+		String className = JOptionPane.showInputDialog(null, "please input the class full name");// Ҫ���û��������ȫ·��
+		try {
+			Class<?> cla = Class.forName(className);
+			Method[] method = cla.getDeclaredMethods();
+			for (Method me : method) {
+				System.out.println(me.toString());
+			}
+			System.out.println("********");
+			Field[] field = cla.getDeclaredFields();
+			for (Field me : field) { 
+				System.out.println(me.toString());
+			}
+		} catch (ClassNotFoundException e) {
+			out.println("no such class defined: " + className);
+			System.exit(-1);
+		}
+	}
 }
