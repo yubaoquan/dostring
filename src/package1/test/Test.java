@@ -87,7 +87,7 @@ public class Test {
 		list.add("hello");
 		System.out.println(map.get("list").size());
 		list = null;
-		System.out.println(map.get("list").size());
+		System.out.println(map.get("list").size()); //new
 	}
 
 	/**
