@@ -1,5 +1,7 @@
 package exceptionLearning;
 
+import implenentsAndExtends.SweetShop;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -14,8 +16,6 @@ import java.util.function.ToLongFunction;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import typeinfo.SweetShop;
 public class Practice {
 
 	/**
