@@ -158,14 +158,6 @@ public class Test {
 	}
 
 	@SuppressWarnings("unused")
-	private static void findSSOID(String response) {
-		String ssotitle = "SSOSID:";
-		int index = response.indexOf(ssotitle);
-		String sid = response.substring(index + ssotitle.length());
-		System.out.println(sid);
-	}
-
-	@SuppressWarnings("unused")
 	private static void testSubString() {
 		String string = "1 username password";
 		int index = string.indexOf(" ");
@@ -311,13 +303,6 @@ public class Test {
 			}
 			System.arraycopy(tempArray, begin, array, begin, length);
 		}
-	}
-
-	private static void swap(Integer[] inputArray, int i, int j) {
-		int temp = inputArray[0];
-		inputArray[0] = inputArray[1];
-		inputArray[1] = temp;
-
 	}
 
 	public static void sort(Object[] arr) {
