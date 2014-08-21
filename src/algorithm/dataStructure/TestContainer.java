@@ -1,4 +1,4 @@
-package algorithm.containerLearning;
+package algorithm.dataStructure;
 
 import java.util.ArrayList;
 import java.util.Arrays;

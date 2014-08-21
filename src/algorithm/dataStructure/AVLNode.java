@@ -1,4 +1,4 @@
-package algorithm.avlTree;
+package algorithm.dataStructure;
 
 public class AVLNode implements Comparable<AVLNode> {
 

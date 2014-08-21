@@ -1,4 +1,4 @@
-package algorithm.containerLearning;
+package algorithm.dataStructure;
 
 public class LinkedStack<T> {
 

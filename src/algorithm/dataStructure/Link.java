@@ -1,4 +1,4 @@
-package algorithm.containerLearning;
+package algorithm.dataStructure;
 
 import static java.lang.System.out;
 public class Link {
