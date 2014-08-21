@@ -1,4 +1,4 @@
-package package3;
+package package1;
 
 import java.awt.image.BufferedImage;
 import java.io.DataOutputStream;

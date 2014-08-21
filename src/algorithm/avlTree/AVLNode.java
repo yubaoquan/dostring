@@ -1,6 +1,6 @@
 package algorithm.avlTree;
 
-public class AVLNode implements Comparable {
+public class AVLNode implements Comparable<AVLNode> {
 
 	int element;
 	AVLNode left;
@@ -18,7 +18,6 @@ public class AVLNode implements Comparable {
 		right = rt;
 	}
 
-	@SuppressWarnings("rawtypes")
 	public static int height(AVLNode t) {
 		return t == null ? -1 : t.height;
 	}
@@ -32,7 +31,6 @@ public class AVLNode implements Comparable {
 	 *            the node that roots the subtree
 	 * @return the new root of the subtree
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static AVLNode insert(int x, AVLNode t) {
 		System.out.println("insert " + x + " into the tree");
 		if (t == null) {
@@ -74,7 +72,6 @@ public class AVLNode implements Comparable {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	public static AVLNode rotateWithLeftChild(AVLNode k2) {
 		AVLNode k1 = k2.left;
 		k2.left = k1.right;
@@ -84,7 +81,6 @@ public class AVLNode implements Comparable {
 		return k1;
 	}
 
-	@SuppressWarnings("unchecked")
 	public static AVLNode rotateWithRightChild(AVLNode k2) {
 		AVLNode k1 = k2.right;
 		k2.right = k1.left;
@@ -176,8 +172,7 @@ public class AVLNode implements Comparable {
 	}
 
 	@Override
-	public int compareTo(Object o) {
-		AVLNode temp = (AVLNode) o;
+	public int compareTo(AVLNode temp) {
 		int result = element - temp.element;
 		return result;
 	}

@@ -34,7 +34,7 @@ public class Link {
 	 * 然后将此节点的next赋值为其前节点，三个节点后移，
 	 * 最后修改原head的next，并为原head赋新值
 	 */
-	private void revert() {
+	private void reverse() {
 		if (head == null || head.next == null) {
 			return ;
 		} else if (head.next.next == null) {
@@ -64,7 +64,7 @@ public class Link {
 	 * 方法2，弄一个新链表，head是旧链表的tail，从旧链表的head节点开始遍历，
 	 * 每个节点插入新链表的tail,然后将新链表的head和tail赋值给旧链表，旧链表就翻转了。
 	 */
-	private void revert2() {
+	private void reverse2() {
 		Link tempLink = new Link(tail.value);
 		Node temp = head;
 		if (temp == null) {
@@ -103,7 +103,7 @@ public class Link {
 		}
 		link.display();
 		out.println();
-		link.revert2();
+		link.reverse2();
 		link.display();
 	}
 	
