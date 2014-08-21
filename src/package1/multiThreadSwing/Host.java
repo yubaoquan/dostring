@@ -1,7 +1,5 @@
-package package1;
+package package1.multiThreadSwing;
 
-import package1.Thread2Class;
-import package1.test.TestMultiThreadSwing;
 
 public class Host implements Runnable{
 	private TestMultiThreadSwing mainFrame;

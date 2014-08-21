@@ -1,24 +1,12 @@
-package package1.test;
+package package1.multiThreadSwing;
 
-import java.awt.BorderLayout;
-import java.awt.Button;
 import java.awt.FlowLayout;
-import java.awt.Frame;
-import java.awt.Panel;
-import java.awt.TextArea;
-import java.awt.TextComponent;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-import package1.Host;
-import package1.Thread2Class;
 
 public class TestMultiThreadSwing extends JFrame implements Runnable {
 
@@ -59,7 +47,6 @@ public class TestMultiThreadSwing extends JFrame implements Runnable {
 					System.out.println("wake up!");
 					tellObserver();
 				} catch (InterruptedException e1) {
-					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 
@@ -76,7 +63,6 @@ public class TestMultiThreadSwing extends JFrame implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 
 	}
 

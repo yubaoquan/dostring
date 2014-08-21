@@ -1,4 +1,4 @@
-package package1;
+package package1.multiThreadSwing;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
