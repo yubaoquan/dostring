@@ -12,10 +12,9 @@ import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class Test {
-	
 
 	public static void main(String[] args) throws Exception {
-//		testList();
+		testConcurrent();
 	}
 
 	@SuppressWarnings("unused")
@@ -66,19 +65,6 @@ public class Test {
 	}
 
 	@SuppressWarnings("unused")
-	private static void testParallelStream() {
-		long t0 = System.nanoTime();
-		// 初始化一个范围100万整数流,求能被2整除的数字，toArray（）是终点方法
-		int a[] = IntStream.range(0, 1000000).filter(p -> p % 2 == 0).toArray();
-		long t1 = System.nanoTime();
-		// 和上面功能一样，这里是用并行流来计算
-		int b[] = IntStream.range(0, 1000000).parallel().filter(p -> p % 2 == 0).toArray();
-		long t2 = System.nanoTime();
-		// 我本机的结果是serial: 0.06s, parallel 0.02s，证明并行流确实比顺序流快
-		System.out.printf("serial: %.2fs, parallel %.2fs%n", (t1 - t0) * 1e-9, (t2 - t1) * 1e-9);
-	}
-
-	@SuppressWarnings("unused")
 	private static void testPutListIntoMap() {
 		Map<String, List<String>> map = new HashMap<>();
 		List<String> list = new ArrayList<>();
@@ -87,7 +73,7 @@ public class Test {
 		list.add("hello");
 		System.out.println(map.get("list").size());
 		list = null;
-		System.out.println(map.get("list").size()); //new
+		System.out.println(map.get("list").size()); // newxxx
 	}
 
 	/**
@@ -146,9 +132,13 @@ public class Test {
 
 	/**
 	 * 填充或清空子序列
-	 * @param seatArray 输入序列
-	 * @param amount 需要填充或清空的数量
-	 * @param operator 1：清空，2：填充
+	 * 
+	 * @param seatArray
+	 *            输入序列
+	 * @param amount
+	 *            需要填充或清空的数量
+	 * @param operator
+	 *            1：清空，2：填充
 	 */
 	private static void fillOrCleanSeats(int[] seatArray, int amount, int operator) {
 		int count = 0;
@@ -170,29 +160,24 @@ public class Test {
 		}
 	}
 
-	
-
-	
-	
-	
 	private static void testLongestSubSequence() {
 		int arraySize = 10;
 		Random random = new Random();
-		//Integer[] array;// = new Integer[arraySize];
-	/*	for (int i = 0; i < array.length; i++) {
-			array[i] = (int) (Math.random() * 10);
-			if (random.nextBoolean()) {
-				array[i] *= -1;
-			} 
-		}*/
-		Integer[] array = {-2, 11, -4, 13, -5, -2};//{1, 2, -1, 1, 3, 2, -2, 3, -1, 5, -7, 3, 2, -2, -1};
+		// Integer[] array;// = new Integer[arraySize];
+		/*
+		 * for (int i = 0; i < array.length; i++) { array[i] = (int) (Math.random() * 10); if
+		 * (random.nextBoolean()) { array[i] *= -1; } }
+		 */
+		Integer[] array = { -2, 11, -4, 13, -5, -2 };// {1, 2, -1, 1, 3, 2, -2, 3, -1, 5, -7, 3, 2,
+														// -2, -1};
 		out.println(Arrays.toString(array));
 		int[] result = longestSubSequence(array);
 		out.println(Arrays.toString(result));
 	}
-	
+
 	/**
 	 * 寻找数组中最大和的子序列
+	 * 
 	 * @param array
 	 * @return
 	 */
@@ -203,8 +188,8 @@ public class Test {
 		int end = 0;
 		int startHere = 0;
 		int endHere = 0;
-		
-		for (int i = 0; i < array.length; i ++) {
+
+		for (int i = 0; i < array.length; i++) {
 			if (maxSumHere + array[i] >= 0) {
 				maxSumHere = maxSumHere + array[i];
 				endHere = i;
@@ -213,12 +198,28 @@ public class Test {
 				startHere = i + 1;
 				endHere = startHere;
 			}
-			if (maxSumHere > maxSum || ((endHere - startHere > end - start ) && maxSumHere == maxSum)) {
+			if (maxSumHere > maxSum
+					|| ((endHere - startHere > end - start) && maxSumHere == maxSum)) {
 				start = startHere;
 				end = endHere;
 				maxSum = maxSumHere;
 			}
 		}
-		return new int[]{start, end, maxSum};
+		return new int[] { start, end, maxSum };
 	}
+	
+	@SuppressWarnings("finally")
+	private static int testFinally() {
+		try {
+			System.out.println("try");
+			return 1;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		} finally {
+			System.out.println("finally");
+			return 2;
+		}
+	}
+
 }

@@ -25,7 +25,7 @@ public class Practice {
 		try {
 			throw new Exception("yubaoquan exception");
 		} catch (Exception e){
-			System.out.println(e.getMessage());
+			System.err.println(e.getMessage());
 		} finally {
 			System.out.println("finally block");
 		}
@@ -115,13 +115,13 @@ public class Practice {
 		try {
 			throw new LoggingException();
 		} catch(LoggingException e) {
-			System.err.println("Caught:" + e);
+			System.out.println("Caught:" + e);
 		}
 		
 		try {
 			throw new LoggingException();
 		} catch(LoggingException e) {
-			System.err.println("Caught:" + e);
+			System.out.println("Caught:" + e);
 			
 		}
 	}
@@ -164,7 +164,6 @@ public class Practice {
 				} finally {
 					lm.third();
 				}
-				
 			}
 		} catch(Exception e) {
 			System.out.println(e);
@@ -197,7 +196,6 @@ public class Practice {
 			lm1 = new LostMessage(2);
 			lm2 = new LostMessage(1);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			System.out.println("" + lm1 + " " + lm2);
@@ -216,7 +214,6 @@ public class Practice {
 
 		@Override
 		public int compare(String arg0, String arg1) {
-			// TODO Auto-generated method stub
 			int firstNumber = Integer.parseInt(arg0.replace("practice", ""));
 			int secondNumber = Integer.parseInt(arg1.replace("practice", ""));
 			if (firstNumber > secondNumber) {
@@ -231,43 +228,36 @@ public class Practice {
 
 		@Override
 		public Comparator<String> reversed() {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public Comparator<String> thenComparing(Comparator<? super String> other) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public <U> Comparator<String> thenComparing(Function<? super String, ? extends U> keyExtractor, Comparator<? super U> keyComparator) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public <U extends Comparable<? super U>> Comparator<String> thenComparing(Function<? super String, ? extends U> keyExtractor) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public Comparator<String> thenComparingInt(ToIntFunction<? super String> keyExtractor) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public Comparator<String> thenComparingLong(ToLongFunction<? super String> keyExtractor) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
 		@Override
 		public Comparator<String> thenComparingDouble(ToDoubleFunction<? super String> keyExtractor) {
-			// TODO Auto-generated method stub
 			return null;
 		}
 
@@ -290,11 +280,24 @@ public class Practice {
 			latestMethod = Practice.class.getMethod("practice" + index);
 			latestMethod.invoke(Practice.class);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 	}
 	
+	private static void runMethodN(int n) {
+		Method latestMethod = null;
+		try {
+			latestMethod = Practice.class.getMethod("practice" + n);
+		} catch (NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
+		}
+		try {
+			latestMethod.invoke(Practice.class);
+		} catch (IllegalAccessException | IllegalArgumentException
+				| InvocationTargetException e) {
+			e.printStackTrace();
+		}
+	}
 	public static void practice13() {
 		MyComparator mc = new MyComparator();
 		System.out.println(mc.compare("practice1", "practice2"));
@@ -310,26 +313,21 @@ public class Practice {
 			try {
 				g.invoke(ss);
 			} catch (IllegalAccessException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (IllegalArgumentException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InvocationTargetException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	
 	public static void main(String[] args) {
-		runTheLatestMethod();
+		runMethodN(10);
 		
 	}
 }

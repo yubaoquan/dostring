@@ -1,8 +1,6 @@
 package algorithm.aStarAlgorithm;
 
-import java.util.Comparator;
-
-public class Node {
+public class Node implements Comparable<Node>{
 	private int x;// X坐标
 	private int y;// Y坐标
 	private Node parentNode;// 父类节点
@@ -74,5 +72,10 @@ public class Node {
 	
 	public String toString() {
 		return "(" + x + "," + y + "," + f + ")";
+	}
+
+	@Override
+	public int compareTo(Node another) {
+		return getF() - another.getF();
 	}
 }

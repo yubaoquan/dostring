@@ -5,34 +5,30 @@ import java.util.*;
 //A*算法
 public class AStar {
 	private int[][] map;// 地图(1可通过 0不可通过)
-	private List<Node> openList;// 开启列表
-	private List<Node> closeList;// 关闭列表
+	private List<Node> openList = new ArrayList<Node>();// 开启列表
+	private List<Node> closeList = new ArrayList<Node>();// 关闭列表
 	private final int COST_STRAIGHT = 10;// 垂直方向或水平方向移动的路径评分
 	private final int COST_DIAGONAL = 14;// 斜方向移动的路径评分
 	private int row;// 行
 	private int column;// 列
+	/**
+	 * 上，下，左，右，左上，左下，右上，右下
+	 */
+	private static int[][] directions = { { 0, -1 }, { 0, 1 }, { -1, 0 }, { 1, 0 },
+			{ -1, -1 }, { -1, 1 }, { 1, -1 }, { 1, 1 } };
 
 	public AStar(int[][] map, int row, int column) {
 		this.map = map;
 		this.row = row;
 		this.column = column;
-		openList = new ArrayList<Node>();
-		closeList = new ArrayList<Node>();
 	}
 
 	// 查找坐标（-1：错误，0：没找到，1：找到了）
 	public int search(int x1, int y1, int x2, int y2) {
-		/*if (x1 < 0 || x1 >= row || x2 < 0 || x2 >= row || y1 < 0 || y1 >= column || y2 < 0 || y2 >= column) {
-			return -1;
-		}
-		if (map[x1][y1] == 0 || map[x2][y2] == 0) {
-			return -1;
-		}*/
-		
 		if (nodeIllegal(x1, y1) || nodeIllegal(x2, y2)) {
 			return -1;
 		}
-		
+
 		Node startNode = new Node(x1, y1, null);
 		Node destinationNode = new Node(x2, y2, null);
 		openList.add(startNode);
@@ -41,7 +37,7 @@ public class AStar {
 			return 0;
 		}
 		for (Node node : resultList) {
-			//2 is the result path
+			// 2 is the result path
 			map[node.getX()][node.getY()] = 2;
 		}
 		return 1;
@@ -50,21 +46,21 @@ public class AStar {
 	private boolean nodeIllegal(int x, int y) {
 		return !nodeLegal(x, y);
 	}
-	
+
 	private boolean nodeLegal(int x, int y) {
-		return ((nodeInTheMap(x, y)) && (!isBlindAlley(x, y)));
+		return ((isInTheMap(x, y)) && (!isBlindAlley(x, y)));
 	}
-	
-	private boolean nodeInTheMap(int x, int y) {
+
+	private boolean isInTheMap(int x, int y) {
 		return ((x >= 0) && (x < row)) && ((y >= 0) && (y < column));
 	}
-	
+
 	private boolean isBlindAlley(int x, int y) {
 		return map[x][y] == 0;
 	}
-	
+
 	// 查找核心算法
-	private List<Node> search(Node startNode, Node destinationNode) {
+	private List<Node> search(Node startNode, Node destination) {
 		List<Node> resultList = new ArrayList<Node>();
 		boolean isFind = false;
 		Node node = null;
@@ -73,48 +69,19 @@ public class AStar {
 			// 取出开启列表中最低F值，即第一个存储的值的F为最低的
 			node = openList.get(0);
 			// 判断是否找到目标点
-			//node.getX() == destinationNode.getX() && node.getY() == destinationNode.getY()
-			if (node.equals(destinationNode)) {
+			// node.getX() == destinationNode.getX() && node.getY() == destinationNode.getY()
+			if (node.equals(destination)) {
 				isFind = true;
 				break;
 			}
-			// 上
-			if ((node.getY() - 1) >= 0) {
-				checkPath(node.getX(), node.getY() - 1, node, destinationNode, COST_STRAIGHT);
-			}
-			// 下
-			if ((node.getY() + 1) < column) {
-				checkPath(node.getX(), node.getY() + 1, node, destinationNode, COST_STRAIGHT);
-			}
-			// 左
-			if ((node.getX() - 1) >= 0) {
-				checkPath(node.getX() - 1, node.getY(), node, destinationNode, COST_STRAIGHT);
-			}
-			// 右
-			if ((node.getX() + 1) < row) {
-				checkPath(node.getX() + 1, node.getY(), node, destinationNode, COST_STRAIGHT);
-			}
-			// 左上
-			if ((node.getX() - 1) >= 0 && (node.getY() - 1) >= 0) {
-				checkPath(node.getX() - 1, node.getY() - 1, node, destinationNode, COST_DIAGONAL);
-			}
-			// 左下
-			if ((node.getX() - 1) >= 0 && (node.getY() + 1) < column) {
-				checkPath(node.getX() - 1, node.getY() + 1, node, destinationNode, COST_DIAGONAL);
-			}
-			// 右上
-			if ((node.getX() + 1) < row && (node.getY() - 1) >= 0) {
-				checkPath(node.getX() + 1, node.getY() - 1, node, destinationNode, COST_DIAGONAL);
-			}
-			// 右下
-			if ((node.getX() + 1) < row && (node.getY() + 1) < column) {
-				checkPath(node.getX() + 1, node.getY() + 1, node, destinationNode, COST_DIAGONAL);
-			}
+			 for (int i = 0;i < directions.length;i ++) {
+				 checkPath(node,directions[i][0],directions[i][1],destination);
+			 }
 			// 从开启列表中删除
 			// 添加到关闭列表中
 			closeList.add(openList.remove(0));
 			// 开启列表中排序，把F值最低的放到最底端
-			Collections.sort(openList, new NodeFComparator());
+			Collections.sort(openList);
 			// System.out.println(openList);
 		}
 		if (isFind) {
@@ -123,8 +90,15 @@ public class AStar {
 		return resultList;
 	}
 
+	private void checkPath(Node node, int x, int y, Node destination) {
+		if (isInTheMap(node.getX() + x, node.getY() +y)) {
+			checkPath(node.getX() + x, node.getY() +y, node, destination,
+					COST_DIAGONAL);
+		}
+	}
 	// 查询此路是否能走通
-	private boolean checkPath(int x, int y, Node parentNode, Node destinationNode, int cost) {
+	private boolean checkPath(int x, int y, Node parentNode, Node destinationNode,
+			int cost) {
 		Node node = new Node(x, y, parentNode);
 		// 查找地图中是否能通过
 		if (isBlindAlley(x, y)) {
@@ -143,7 +117,6 @@ public class AStar {
 				node.setParentNode(parentNode);
 				countG(node, destinationNode, cost);
 				countF(node);
-
 				openList.set(index, node);
 			}
 		} else {
@@ -192,7 +165,8 @@ public class AStar {
 
 	// 计算H值
 	private void countH(Node node, Node eNode) {
-		node.setF((Math.abs(node.getX() - eNode.getX()) + Math.abs(node.getY() - eNode.getY())) * 10);
+		node.setF((Math.abs(node.getX() - eNode.getX()) + Math.abs(node.getY()
+				- eNode.getY())) * 10);
 	}
 
 	// 计算F值
