@@ -22,6 +22,12 @@ import exceptionLearning.Practice;
 
 public class Main {
 
+	private static void branch() {
+		
+	}
+private static void master() {
+		
+	}
 	public static void practice1() {
 		int a = 0;
 		if (a == 0) {
