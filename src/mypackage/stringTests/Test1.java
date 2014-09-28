@@ -9,7 +9,12 @@ public class Test1 {
 		System.out.println(str2);
 	}
 	
+	private static void testNull() {
+		String str = null;
+		String nullStr = String.valueOf(str);
+		System.out.println(nullStr.length());
+	}
 	public static void main(String[] args) {
-		testIntern();
+		testNull();
 	}
 }

@@ -20,7 +20,16 @@ public class Test {
 		out.println(str1.indexOf(str3));
 	}
 	
+	private static String method1() {
+		 try {
+			 return "in try";
+		 } catch (Exception e) {
+			 System.out.println("exceptino");
+		 } finally {
+			 return "in finally";
+		 }
+	}
 	public static void main(String[] args) {
-		test2();
+		System.out.println(method1());
 	}
 }
