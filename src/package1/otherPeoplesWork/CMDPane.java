@@ -21,7 +21,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingUtilities;  
 import javax.swing.UIManager;  
   
-public class CMDPane extends JComponent {  
+public class CMDPane extends JComponent { 
   
     /** 
      * 允许最大数据行数 

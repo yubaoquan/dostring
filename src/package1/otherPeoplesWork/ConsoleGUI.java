@@ -90,7 +90,7 @@ public class ConsoleGUI extends JFrame {
         this.setLocationRelativeTo(null);  
         this.setVisible(true);  
         messagePane.cleanCmd();  
-    }  
+    } 
   
     public static void main(String[] args) {  
         System.setProperty("swing.defaultlaf",  
