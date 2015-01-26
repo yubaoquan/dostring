@@ -2,6 +2,7 @@ package netLearning.download;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,8 +26,8 @@ public class DownloadTools {
 			is = url.openStream();
 			storeResource(is, storeFile);
 		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
+			System.out.println(e.getMessage());
+		}finally {
 			closeStream(is);
 		}
 	}
@@ -46,6 +47,7 @@ public class DownloadTools {
 			fos = new FileOutputStream(storeFile);
 			while ((available = inputStreamFromWebPage.read(byteArray)) != -1) {
 				fos.write(byteArray, 0, available);
+				fos.flush();
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
